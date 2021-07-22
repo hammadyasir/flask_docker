@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ferretes</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css', v=0.01) }}">
+  <link rel="stylesheet" href="project/static/css/main.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <script src="/static/javascript/qrcode.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script type="text/javascript">
+    function generateBarCode()
+    {
+      var nric = $('#text').val();
+      var url = 'https://api.qrserver.com/v1/create-qr-code/?data=' + nric + '&amp;size=50x50';
+      $('#barcode').attr('src', url);
+    }
+  </script>
+  <style >
+    .navbar {
+      margin-bottom: 0;
+      background-color: #009F93;
+      z-index: 9999;
+      border: 0;
+      font-size: 12px !important;
+      line-height: 1.42857143 !important;
+      letter-spacing: 4px;
+      border-radius: 0;
+      font-family: Montserrat, sans-serif;
+    }
+    .navbar li a, .navbar .navbar-brand {
+      color: #fff !important;
+    }
+    .navbar-nav li a:hover, .navbar-nav li.active a {
+      color: #009F93 !important;
+      background-color: #fff !important;
+    }
+    .navbar-default .navbar-toggle {
+      border-color: transparent;
+      color: #fff !important;
+    }
+    .jumbotron {
+      background-color: #009F93;
+      color: #fff;
+      padding: 100px 25px;
+      font-family: Montserrat, sans-serif;
+    }
+    .btn-f {
+      background-color:#037171;
+    }
+    .hr-style {
+      background-color: white;
+    }
+    .footer {
+      background: #009F93;
+      color: #CCCCCC;
+    }
+
+    .footer img{
+      height: 40px;
+    }
+
+    .Site {
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+
+    .Site-content {
+      flex: 1;
+    }
+  </style>
+
+</head>
+<body class="Site" id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#myPage">Muncipio De Chepo</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="{{ url_for('main.index') }}" class="navbar-item">
+            Home</a>
+          </li>
+          <li>
+            <a href="/irons" class="navbar-item">
+              Ferretes
+            </a>
+          </li>
+          {% if current_user.is_authenticated %}
+          <li>
+            <a href="/new" class="navbar-item">
+              Registrar
+            </a>
+          </li>
+          <li>
+            <a href="/filter" class="navbar-item">
+              Buscar
+            </a>
+          </li>
+          <li>
+            <a href="{{ url_for('auth.logout') }}" class="navbar-item">
+              Logout
+            </a>
+          </li>
+          {% endif %}
+          {% if not current_user.is_authenticated %}
+          <li>
+            <a href="{{ url_for('auth.login') }}" class="navbar-item">
+              Login
+            </a>
+          </li>
+          <li>
+            <a href="{{ url_for('auth.signup') }}" class="navbar-item">
+              Sign Up
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="Site-content">
+    <div class="content">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </main>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="footer">
+    <div class="container text-center " style="padding-top: 8px; padding-bottom: 8px;" >
+        <p style="color: white;">© 2021 OTD</p>
+
+    </div>
+  </div>
+
+</body>
+
+</html>

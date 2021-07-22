@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="jumbotron text-center">
+  <div class="container">
+    <h1>Registro de Ferretes</h1>
+    <hr class="hr-style">
+    <p>Ganaderos registrados en el distritro de Chepo</p>
+    <form class="form-inline" method="GET">
+      <div class="input-group">
+        <input name="q" for="query" class="form-control" size="60" placeholder="Nombre o Cedula" required>
+        <div class="input-group-btn">
+          <button type="button" class="btn btn-f">Buscar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<br>
+<div class="container">
+  <div class="table-responsive">
+    <table class="table">
+      <thead style="background-color:#009F93;">
+        <tr>
+          <th style='color: white;'>Nombre</th>
+          <th style='color: white;'>Cedula</th>
+          <th style='color: white;'>Fecha de Registro</th>
+          <th style='color: white;'>Ferrete</th>
+          <th style='color: white;'></th>
+          <th style='color: white;'></th>
+          <th style='color: white;'></th>
+        </tr>
+      </thead>
+      <tbody>
+       {% for iron in irons %}
+       <tr>
+        <td>{{ iron.nombre }}</td>
+        <td>{{ iron.cedula }}</td>
+        <td>{{ iron.fecha_registro.strftime('%m/%d/%Y') }}</td>
+        <td>
+      <a
+      href="{{ url_for('main.pdf_iron', iron_id=iron.id) }}"
+      class="btn btn-outline-primary"
+      role="button"
+      >
+      Imagen
+    </a>
+  </td>
+      <td>
+        <a
+        href="{{ url_for('main.show_iron', iron_id=iron.id) }}"
+        class="btn btn-outline-primary"
+        role="button"
+        >
+        Ver
+      </a>
+      <td>
+          <a
+          href="{{ url_for('main.update_iron', iron_id=iron.id) }}"
+          class="btn btn-outline-primary"
+          role="button"
+          >
+          Editar
+        </a>
+      </td>
+    </td>
+    <td>
+      <a
+      href="{{ url_for('main.pdf_iron', iron_id=iron.id) }}"
+      class="btn btn-outline-primary"
+      role="button"
+      >
+      Pdf
+    </a>
+  </td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+
+{% endblock %}

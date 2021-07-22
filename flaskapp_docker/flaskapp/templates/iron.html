@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('static', filename='css/main2.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="container" style="padding-top: 100px;">
+  <h2>Registro #{{iron.id}}</h2>
+  <p>{{ iron.fecha_registro }}</p>
+  <hr>
+  <div class="row">
+    <div class="col-md-6">
+      <h3 class="text-center">Informacion De Registro</h3>
+      <br>
+      <h4><i class="fas fa-user"></i> Propietario: {{ iron.nombre }}</h4>
+      <h4><i class="fas fa-id-card"></i> Cedula: {{ iron.cedula }}</h4>
+      <h4><i class="fas fa-map-marker-alt"></i> Dirreccion: {{ iron.domicilio }} </h4>
+      <h4><i class="fas fa-envelope"></i> Email: {{iron.correo}}</h4>
+      <h4><i class="fas fa-phone"></i> Telefono: {{iron.telefono}}</h4>
+    </div>
+    <div class="col-md-6">
+     <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#home">Cedula</a></li>
+      <li><a data-toggle="tab" href="#menu1">Ferrete</a></li>
+      <li><a data-toggle="tab" href="#menu2">Documentos</a></li>
+    </ul>
+    <div class="tab-content">
+      <div id="home" class="tab-pane fade in active">
+        <br>
+        <img src="{{cedula}}" alt="Cedula" style="width:100%">
+      </div>
+      <div id="menu1" class="tab-pane fade">
+        <br>
+        <img src="{{img}}" alt="Ferrete" style="width:100%">
+      </div>
+      <div id="menu2" class="tab-pane fade">
+        <br>
+        <div class="text-center">
+          <a
+          href="{{ url_for('main.pdf_iron', iron_id=iron.id) }}"
+          class="btn btn-outline-primary"
+          role="button"
+          >
+          Certificacion
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript" src="{{url_for('static', filename='/javascript/qrcode.min.js') }}"></script>
+<script type="text/javascript">
+  new QRCode(document.getElementById("qrcode"), "http://jindo.dev.naver.com/collie");
+</script>
+
+{% endblock %}

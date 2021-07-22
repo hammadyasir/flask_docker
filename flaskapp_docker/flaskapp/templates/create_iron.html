@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container" style="padding-top: 100px;">
+  <h2>Registrar Ferrete</h2>
+    <hr>
+    <strong>Requisitos</strong>
+    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia facilis est delectus, cupiditate ea quo nihil nostrum voluptatibus tempore minus, nesciunt laborum et.
+    <br>
+    <br>
+  <div class="row">
+    <div class="col-md-8">
+  <form method="POST" action="/new" enctype="multipart/form-data">
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <div class="notification is-danger">
+      {{ messages[0] }}
+    </div>
+    {% endif %} {% endwith %}
+    <div class="form-group" >
+      <label for="nombre">Nombre del propietario:</label>
+      <input
+        type="text"
+        id="nombre"
+        name="nombre"
+        placeholder="Nombre"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label for="cedula">Numero de cedula:</label>
+      <input
+        type="text"
+        id="cedula"
+        name="cedula"
+        placeholder="Cedula"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label for="domicilio">Direccion de domicilio:</label>
+      <input
+        type="text"
+        id="domicilio"
+        name="domicilio"
+        placeholder="Direccion"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label for="domicilio">Correo:</label>
+      <input
+        type="text"
+        id="correo"
+        name="correo"
+        placeholder="Correo"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label for="domicilio">Telefono:</label>
+      <input
+        type="text"
+        id="telefono"
+        name="telefono"
+        placeholder="Telefono"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label for="file">Ferrete:</label>
+      <input
+        type="file"
+        id="file"
+        name="file"
+      />
+    </div>
+    <div class="form-group">
+      <label for="cedula_img">Cedula:</label>
+      <input
+        type="file"
+        id="cedula_img"
+        name="cedula_img"
+      />
+    </div>
+    <button type="submit" class="btn btn-f" style="color: white;">Guardar Registro</button>
+  </form>
+  </div>
+</div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,55 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ferretes</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+
+</head>
+<div class="container">
+  <h3 class="text-center">Documento de Registro</h3>
+  <br>
+  Lorem ipsum, dolor sit amet consectetur adipisicing {{ iron.nombre }} elit. Doloribus similique {{ iron.cedula }} architecto, ipsa nesciunt quam accusamus ex eos autem repudiandae,{{ iron.domicilio }} amet odio, rerum sunt nam, dolorum. Vel autem quibusdam et vero. Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo, modi id debitis eaque dignissimos, quis non laudantium optio reiciendis officia consectetur omnis porro itaque, voluptatum ut hic odio quod animi!
+  <br>
+  <br>
+  <div class="text-center">
+    <img id='barcode' src="https://api.qrserver.com/v1/create-qr-code/?data={{url}}&amp;size=100x100" alt="" title="HELLO" width="150" height="150" />
+  </div>
+  <br>
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam officia ea necessitatibus molestiae cupiditate, deleniti dignissimos exercitationem nostrum odit quaerat ex illo nihil corporis consectetur et quos blanditiis fugiat, quibusdam.
+  <br>
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        ______________________________ <br>
+        {{ iron.nombre }} <br>
+        {{ iron.fecha }}
+        Date
+      </div>
+      <div class="col-md-6">
+        ______________________________ <br>
+        Nombre <br>
+        [Insert Buyer’s typed name] <br>
+        Date
+      </div>
+    </div>
+  </div>
+  <br>
+</div>
+
+
+
+
+<script>
+  function generateBarCode()
+  {
+    var nric = $('#text').val();
+    var url = 'https://api.qrserver.com/v1/create-qr-code/?data=' + nric + '&amp;size=50x50';
+    $('#barcode').attr('src', url);
+  }
+</script>
